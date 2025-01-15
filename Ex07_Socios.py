@@ -2,8 +2,8 @@
 
 import numpy as np
 
-ClubeA = np.empty(["João", "Mario", "Maria", "Luiz", "Felipe"])
-ClubeB = np.empty(["Joana", "Mario", "Mariana", "Luisa", "Gabriel"])
+ClubeA = np.array(["João", "Mario", "Maria", "Luiz", "Felipe"])
+ClubeB = np.array(["Joana", "Mario", "Mariana", "Luisa", "Gabriel"])
 
 for Nome in ClubeA:
     if Nome in ClubeB:

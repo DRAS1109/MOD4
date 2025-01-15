@@ -2,7 +2,7 @@
 
 import numpy as np
 
-Password_Proibidas = np.empty(["M3DiA", "12345", "123456", "Password", "Admin"])
+Password_Proibidas = np.array(["M3DiA", "12345", "123456", "Password", "Admin"])
 
 Password_Utilizador = input("Introduza a sua palavra passe: ")
 
