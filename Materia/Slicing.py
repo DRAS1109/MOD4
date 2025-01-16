@@ -36,6 +36,11 @@ def Nomes():
             Sobrenome = Nome[i + 1:] #i + 1 : Tira o espaço em branco no inicio
             Sobrenome_Inverso = Nome[:i:-1]
 
+    #OU
+    Nome_Separados = Nome.split(" ")
+    Nome_Proprio = Nome_Separados[0]
+    Sobrenome = Nome_Separados[1]
+
     print(Nome_Proprio)
     print(Sobrenome)
     print(Sobrenome_Inverso)
