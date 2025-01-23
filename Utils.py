@@ -90,3 +90,14 @@ def Ler_Nome_Litimes(Min, Max=None, Mensagem="Introduza uma palavra: "):
         Nome = input(Mensagem)
         if (Min == None and len(Nome) <= Max) or (Max == None and len(Nome) >= Min) or (len(Nome) >= Min and len(Nome) <= Max):
             return Nome
+
+def Bubble_Sort(Vetor):
+    Tamanho  = len(Vetor)
+    for i in range(Tamanho):
+        for j in range(0, Tamanho - i - 1):
+            if Vetor[j] > Vetor[j + 1]:
+                Temp = Vetor[j]
+                Vetor[j] = Vetor[j + 1]
+                Vetor[j + 1] = Temp
+    
+    return Vetor

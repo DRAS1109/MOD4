@@ -7,14 +7,13 @@ import numpy as np
 
 def Menu():
     MaxContactos = 20
-    Nomes = np.zeros(MaxContactos, dtype="U50")
-    Datas = np.zeros(MaxContactos, dtype="U50")
+    Contactos = np.zeros(MaxContactos, dtype="U50")
 
     Menu = """
 O que pretende executar?
     1.Adicionar
     2.Listar Contactos
-    3.Pesquizar
+    3.Pesquisar
     4.Terminar Programa
 """
 
@@ -24,13 +23,13 @@ O que pretende executar?
         Opção = input(Menu)
 
         if Opção == "1":
-            Adicionar(Nomes, Datas, MaxContactos)
+            Adicionar(Contactos, MaxContactos)
         
         elif Opção == "2":
-            Listar(Nomes, Datas, MaxContactos)
+            Listar(Contactos)
 
         elif Opção == "3":
-            Pesquisar(Nomes, Datas, MaxContactos)
+            Pesquisar(Contactos)
         
         elif Opção == "4":
             pass
@@ -38,10 +37,10 @@ O que pretende executar?
         else:
             print("Opção inválida")
 
-def Adicionar(Nomes, Datas, MaxContactos):
+def Adicionar(Contactos, MaxContactos):
     Vazios = 0
 
-    for i in Nomes:
+    for i in Contactos:
         if i == "":
             Vazios = Vazios + 1
 
@@ -51,27 +50,55 @@ def Adicionar(Nomes, Datas, MaxContactos):
     else:
         Novo_Nome = input("Qual o nome do novo contacto? ")
         Nova_Data = input("Qual a data de nascimento do novo contacto? ")
-        if Nomes[0] == "":
-            Nomes[0] = f"{Novo_Nome} | {Nova_Data}"
+        if Contactos[0] == "":
+            Contactos[0] = f"{Novo_Nome} | {Nova_Data}"
 
         else:
             for Posição in range (MaxContactos):
-                Nome = Nomes.split(" ")
-                if Novo_Nome < Nome:
+                Nome = Contactos[Posição]
+                if Nome=="":
+                    break
+                Nome = Nome.split(" | ")
+                if Novo_Nome < Nome[Posição]:
                     break
             
-            for i in range(MaxContactos - 2, Posição, -1):
-                if Nomes[i] != "":
-                    Nomes[i + 1] = Nomes[i]
+            for i in range(MaxContactos - 1, Posição , -1):
+                if Contactos[i] != "":
+                    Contactos[i] = Contactos[i-1]
 
-            Nomes[Posição] = Novo_Nome
+            Contactos[Posição] = f"{Novo_Nome} | {Nova_Data}"
 
 
-def Listar(Nomes, Datas, MaxContactos):
-    print(Nomes)
+def Listar(Contactos):
+    for Nome in Contactos:
+        if Nome != "":
+            Partes = Nome.split(" | ")
+            print(f"Nome: {Partes[0]} | Data de Nascimento: {Partes[1]}")
 
-def Pesquisar(Nomes, Datas, MaxContactos):
-    pass
+def Pesquisar(Contactos):
+    NomeP = input("Qual nome pretende porcurar? ")
+    Primeiro = 0
+    Ultimo = 0
+
+    for k in Contactos:
+        if k == "":
+            break
+
+        Ultimo = Ultimo + 1
+
+    while Primeiro <= Ultimo:
+        Meio = (Primeiro + Ultimo) // 2
+        Valor_Meio = Contactos[Meio]
+        if NomeP in Valor_Meio:
+            print(f"Contacto encontrado: {Valor_Meio}")
+            return
+
+        elif Valor_Meio < NomeP:
+            Primeiro = Meio + 1
+        
+        else:
+            Ultimo = Meio - 1
+    print(f"O contacto {NomeP} não existe")
 
 if __name__ == "__main__":
     Menu()
