@@ -42,7 +42,9 @@ def main():
     """Media = C_Media(Segundos)
     Mais_tempo(Segundos, Matriculas)
     Mais_Media(Segundos, Matriculas, Media)
-    Matricula_R(Matriculas)"""
+    Matricula_R(Matriculas)
+    Pesquisa(Matriculas, Segundos)"""
+    Ordenadas(Segundos, Matriculas)
 
 def C_Media(Segundos):
 
@@ -90,11 +92,17 @@ def Pesquisa(Matriculas, Segundos):
         if Pesquisar in Matriculas[i]:
             print(f"Matricula: {Matriculas[i]} | Tempo: {Segundos[i]}")
 
-def Ordenadas(Segundos):
-    Ordenados_S
-    
-    Bubble_Sort(Ordenados_S)
+def Ordenadas(Segundos, Matriculas):
+    Segundos_Ordenados = np.array(Segundos)
 
+    Bubble_Sort(Segundos_Ordenados)
+
+    for i in range(len(Segundos)):
+        for f in range(len(Segundos_Ordenados)):
+            if Segundos[i] == Segundos_Ordenados[f] and Segundos[i] != 0:
+                print(f"Matricula: {Matriculas[i]} | Tempo: {Segundos[i]}")
+
+#TODO:
 def Bubble_Sort(Vetor):
     Tamanho = len(Vetor)
     for i in range(Tamanho):
